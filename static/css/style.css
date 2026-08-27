@@ -1,11 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: Lovelo, sans-serif;
+    font-weight: bold;
+}
+
 body {
     margin: 0;
 }
 
 aside nav {
+    background-image: url('../images/background.png');
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    height: 100vh;
+    width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    position: sticky;
+    top: 0;
+    align-self: start;
+}
+
+aside nav > img {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #4e4e4e;
 }
 
 aside nav a {
@@ -13,4 +43,60 @@ aside nav a {
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
+
+    color: #A6A6A6;
+    font-family: Lekton, monospace;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 30px;
+}
+
+aside nav a:hover {
+    color: #f7f7f7;
+}
+
+aside nav a.active {
+    color: #f7f7f7;
+}
+
+
+
+/* Large Mobile navigation */
+@media (max-width: 767px) {
+     aside nav {
+        width: 100%;
+        height: 60px;
+
+        flex-direction: row;
+        align-items: center;
+
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+
+        padding: 0;
+        z-index: 1000;
+    }
+
+    aside nav > img {
+        display: none;
+    }
+
+    aside nav a {
+        flex: 1;
+        height: 100%;
+        padding: 0;
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    aside nav a span {
+        display: none;
+    }
+
+    aside nav a i {
+        font-size: 22px;
+    }
 }

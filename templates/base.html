@@ -9,31 +9,42 @@
 
     <title>{% block title %}Project Management{% endblock %}</title>
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
     <!-- Sidebar section -->
-    <aside>
+    <aside>        
         <nav>
-            <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/full-logo-white.png') }}" alt="Logo">
+
+            <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">
                 <span>Home</span>
             </a>
 
-            <a href="{{ url_for('dashboard') }}">
+            <a href="{{ url_for('dashboard') }}" class="{% if request.endpoint == 'dashboard' %}active{% endif %}">
+                <i class="bi bi-graph-up"></i>
                 <span>Dashboard</span>
             </a>
 
-            <a href="{{ url_for('project_tracker') }}">
+            <a href="{{ url_for('project_tracker') }}"
+                class="{% if request.endpoint == 'project_tracker' %}active{% endif %}">
+                <i class="bi bi-folder2"></i>
                 <span>Project Tracker</span>
             </a>
 
-            <a href="{{ url_for('in_progress') }}">
+            <a href="{{ url_for('in_progress') }}" class="{% if request.endpoint == 'in_progress' %}active{% endif %}">
+                <i class="bi bi-list-task"></i>
                 <span>In Progress</span>
             </a>
 
-            <a href="{{ url_for('completed_projects') }}">
+            <a href="{{ url_for('completed_projects') }}"
+                class="{% if request.endpoint == 'completed_projects' %}active{% endif %}">
+                <i class="bi bi-clipboard-check"></i>
                 <span>Completed Projects</span>
             </a>
         </nav>
