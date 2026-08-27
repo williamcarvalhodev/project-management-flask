@@ -3,11 +3,28 @@
 {% block title %}Dashboard | Project Management{% endblock %}
 
 {% block content %}
-    <div class="main-content-dashboard">
-        <div class="container-dashboard">
-            <h2>Welcome, William!</h2>
+<div class="main-content-dashboard">
+    <div class="container-dashboard">
+        <h2 class="text-start">Welcome, William</h2>
+        <p class="text-start">Here’s a quick overview of what’s happening across your projects today.</p>
+    </div>
 
-            <p>Track project performance, key metrics, reports, and revenue at a glance.</p>
+    <!-- Cards info section -->
+    <div class="mt-4">
+        <div class="row g-4">
+
+            <!-- Card one section -->
+            <div class="col-12 col-md-12 col-lg-12 col-xl-4">
+                <div class="info-card p-3 h-100">
+                    <h3 class="text-start">Project Dashboard</h3>
+
+                    <p class="text-start">
+                        Get a complete overview of your projects in one place. Track progress, monitor deadlines, review
+                        project status, analyze revenue, and follow key performance metrics to quickly understand what
+                        is on track, what needs attention, and how your projects are performing overall.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-{% endblock %}
+</div {% endblock %}

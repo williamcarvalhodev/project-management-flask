@@ -68,8 +68,7 @@ aside nav a.active {
 }
 
 .main-content-dashboard {
-    width: 100%;
-    padding: 30px;
+    padding: min(30px, 7%);
 }
 
 .main-content-dashboard p {
@@ -80,6 +79,19 @@ aside nav a.active {
     font-weight: 400;
     color: #666666;
 }
+
+.container-dashboard,
+.container-projects,
+.project-grid-card {
+    border: 1px solid #dddddd;
+    padding: 30px;
+}
+
+/* Cards info section */
+.info-card {
+    border: 1px solid #dddddd;
+}
+
 
 
 /* Large Mobile navigation */
