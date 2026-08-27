@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A simple and efficient project management system to organize projects, track tasks, and improve team productivity.">
+
+    <title>{% block title %}Project Management{% endblock %}</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Sidebar section -->
+    <aside>
+        <nav>
+            <a href="{{ url_for('home') }}">
+                <span>Home</span>
+            </a>
+
+            <a href="{{ url_for('dashboard') }}">
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ url_for('project_tracker') }}">
+                <span>Project Tracker</span>
+            </a>
+
+            <a href="{{ url_for('in_progress') }}">
+                <span>In Progress</span>
+            </a>
+
+            <a href="{{ url_for('completed_projects') }}">
+                <span>Completed Projects</span>
+            </a>
+        </nav>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+
+</html>

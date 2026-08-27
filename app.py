@@ -22,7 +22,7 @@ def in_progress():
     return render_template("in_progress.html")
 
 
-@app.route("completed_projects")
+@app.route("/completed_projects")
 def completed_projects():
     return render_template("completed_projects.html")   
 
