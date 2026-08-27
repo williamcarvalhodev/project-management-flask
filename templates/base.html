@@ -26,10 +26,6 @@
         <nav>
             <img src="{{ url_for('static', filename='images/full-logo-white.png') }}" alt="Logo">
 
-            <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">
-                <span>Home</span>
-            </a>
-
             <a href="{{ url_for('dashboard') }}" class="{% if request.endpoint == 'dashboard' %}active{% endif %}">
                 <i class="bi bi-graph-up"></i>
                 <span>Dashboard</span>

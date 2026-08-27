@@ -92,7 +92,56 @@ aside nav a.active {
     border: 1px solid #dddddd;
 }
 
+/* Timeline section */
+.timeline-item {
+    display: grid;
+    grid-template-columns: 55px 20px 1fr;
+    gap: 10px;
+    position: relative;
+    min-height: 58px;
+}
 
+.timeline-time {
+    font-family: Lekton, monospace;
+    padding-top: 2px;
+    color: #94a3b8;
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.timeline-marker {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.timeline-marker::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    bottom: 0;
+    width: 3px;
+    background-color: #edf2f7;
+}
+
+.timeline-dot {
+    position: relative;
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    margin-top: 4px;
+    border-radius: 50%;
+    background-color: #666666;
+}
+
+.timeline-content {
+    font-family: Lekton, monospace;
+    padding-bottom: 18px;
+    color: #666666;
+    font-size: 13px;
+    font-weight: 400;
+}
 
 /* Large Mobile navigation */
 @media (max-width: 767px) {
