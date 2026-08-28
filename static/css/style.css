@@ -181,6 +181,77 @@ aside nav a.active {
     text-decoration: none;
 }
 
+/* Summary card section */
+.summary {
+    overflow: hidden;
+    color: #fff;
+    background-color: #3863e8;
+}
+
+.summary-annual {
+    overflow: hidden;
+    color: #fff;
+    background-color: #00ab69;
+}
+
+.summary-request {
+    overflow: hidden;
+    color: #fff;
+    background-color: #f4a100;
+}
+
+.summary-task {
+    overflow: hidden;
+    color: #fff;
+    background-color: #00cfd5;
+}
+
+.summary-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Lekton, monospace;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 22px;
+}
+
+.summary-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.summary-card h3 {
+    margin: 0;
+    font-family: Lekton, monospace;
+    font-weight: 400;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.summary-icon {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 34px;
+}
+
+.summary-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    font-family: Lekton, monospace;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.summary-card-footer:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.14);
+}
+
 /* Large Mobile navigation */
 @media (max-width: 767px) {
 
