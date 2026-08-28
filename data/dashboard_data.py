@@ -68,3 +68,33 @@ projects_progress = [
         "color": "success"
     }
 ]
+
+summary = {
+    "monthly_earnings": {
+        "id": 1,
+        "category": "monthly_earnings",
+        "value": "€30,000",
+        "url": "completed_projects"
+    },
+
+    "annual_earnings": {
+        "id": 2,
+        "category": "annual_earnings",
+        "value": "€480,000",
+        "url": "completed_projects"
+    },
+
+    "pending_approval": {
+        "id": 3,
+        "category": "pending_approval",
+        "value": 10,
+        "url": "project_tracker"
+    },
+
+    "task_completion": {
+        "id": 4,
+        "category": "task_completion",
+        "value": 38,
+        "url": "/in_progress"
+    }
+}
