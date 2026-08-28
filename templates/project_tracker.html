@@ -3,6 +3,107 @@
 {% block title %}Project Tracker | Project Management{% endblock %}
 
 {% block content %}
-    <h1>Project Tracker</h1>
-    <p>Track project status, deadlines, clients, and financial information.</p>
+<div class="main-content-tracker">
+    <div class="container-tracker">
+        <h2 class="text-start">Tracker Dashboard</h2>
+        <p class="text-start">Track the status, progress, deadlines, and key details of all your projects in one place.
+        </p>
+    </div>
+
+    <div class="projects-content">
+        <!-- E-commerce website content section -->
+        <div class="col-12 mt-4">
+            <button onclick=toggleSubTable(this) class="text-start dropdown-btn">
+                <i class="bi bi-chevron-down"></i>
+                <span>E-commerce Websites</span>
+                <p>( 1 proposal(s) )</p>
+            </button>
+
+            <div class="project-grid-card">
+
+                <!-- Table header -->
+                <div class="project-grid-header d-none d-xl-block">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-xl-2">Project</div>
+                        <div class="col-xl-2">Status</div>
+                        <div class="col-xl">Client</div>
+                        <div class="col-xl">Price</div>
+                        <div class="col-xl">Designer</div>
+                        <div class="col-xl">Start</div>
+                        <div class="col-xl">End</div>
+                        <div class="col-xl">Days Left</div>
+                    </div>
+                </div>
+
+                <!-- Project Details -->
+                <article class="project-grid-row">
+                    <div class="row g-3 align-items-center">
+
+                        <div class="col-12 col-xl-2">
+                            <div class="project-cell" data-label="Project">
+                                <div class="project-title">
+                                    <strong>A Bella Borda</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-2">
+                            <div class="project-cell" data-label="Status">
+                                <span class="project-badge status-proposal">
+                                    Proposal Sent
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl">
+                            <div class="project-cell" data-label="Client">
+                                <span class="project-value">Sabrina</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl">
+                            <div class="project-cell" data-label="Price">
+                                <span class="project-value">€558</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl">
+                            <div class="project-cell" data-label="Designer">
+                                <span class="project-value">€0</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl">
+                            <div class="project-cell" data-label="Start">
+                                <span class="project-value">-</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl">
+                            <div class="project-cell" data-label="End">
+                                <span class="project-value">-</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl">
+                            <div class="project-cell" data-label="Days Left">
+                                <strong class="project-pending">
+                                    Pending
+                                </strong>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Projects summary -->
+                <div class="project-grid-footer">
+                    <span>1 proposal(s)</span>
+                    <strong>Total net: €527.00</strong>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
