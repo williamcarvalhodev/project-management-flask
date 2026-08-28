@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-from data.dashboard_data import recent_activities
+from data.dashboard_data import recent_activities, projects_progress
+
 
 app = Flask(__name__)
 
@@ -12,7 +13,8 @@ def home():
 def dashboard():
     return render_template(
         "dashboard.html",
-        activities=recent_activities
+        activities=recent_activities,
+        projects=projects_progress
     )
 
 

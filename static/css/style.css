@@ -143,6 +143,44 @@ aside nav a.active {
     font-weight: 400;
 }
 
+/* Progress tracker section */
+.open-projects-body {
+    padding: 20px;
+}
+
+.project-progress {
+    margin-bottom: 22px;
+}
+
+.project-progress:last-child {
+    margin-bottom: 0;
+}
+
+.project-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-family: Lekton, monospace;
+    font-weight: 400;
+    color: #666666;
+    font-size: 13px;
+}
+
+.open-projects-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    font-family: Lekton, monospace;
+    font-size: 13px;
+    font-weight: 400;
+    color: #666666;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    text-decoration: none;
+}
+
 /* Large Mobile navigation */
 @media (max-width: 767px) {
 
