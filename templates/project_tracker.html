@@ -227,24 +227,23 @@
                             <div class="d-flex justify-content-start align-items-center gap-2 flex-nowrap">
 
                                 <!-- Edit button -->
-                                <button type="button" 
-                                    class="btn btn-sm btn-warning border-0 rounded-0"
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#editProjectModal{{ project.project_id }}" 
-                                    {% if project.status=="Completed" %} 
-                                        disabled
-                                    {% endif %}>
+                                <button type="button" class="btn btn-sm btn-warning border-0 rounded-0"
+                                    data-bs-toggle="modal" data-bs-target="#editProjectModal{{ project.project_id }}" {%
+                                    if project.status=="Completed" %} disabled {% endif %}>
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
                                 <!-- Delete button -->
-                                <button type="button" 
-                                    class="btn btn-sm btn-danger border-0 rounded-0" 
-                                    {% if project.status !="Proposal Sent" %} 
-                                        disabled
-                                    {% endif %}>
-                                    <i class="bi bi-x-lg"></i>
-                                </button>
+                                <form method="POST"
+                                    action="{{ url_for('delete_project', project_id=project.project_id) }}">
+                                    <button type="submit" 
+                                        class="btn btn-sm btn-danger border-0 rounded-0" 
+                                        {% if project.status !="Proposal Sent" %} 
+                                            disabled
+                                        {% endif %}>
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

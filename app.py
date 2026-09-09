@@ -75,6 +75,21 @@ def add_project():
     return redirect(url_for("project_tracker"))
 
 
+@app.route("/projects/<int:project_id>/delete", methods=["POST"])
+def delete_project(project_id):
+
+    # Find the project by ID and remove it from its group
+    for group in project_groups:
+        for project in group.projects:
+
+            if project.project_id == project_id:
+                group.delete_project(project)
+
+                return redirect(url_for("project_tracker"))
+
+    return redirect(url_for("project_tracker"))
+
+
 @app.route("/in_progress")
 def in_progress():
     return render_template("in_progress.html")

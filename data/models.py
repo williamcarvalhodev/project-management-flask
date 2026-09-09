@@ -76,3 +76,6 @@ class ProjectGroup:
         
     def add_project(self, project):
         self.projects.append(project)
+        
+    def delete_project(self, project):
+        self.projects.remove(project)    
