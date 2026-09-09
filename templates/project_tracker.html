@@ -117,9 +117,9 @@
                     (
                     {{ group.project_count() }}
                     {% if group.project_count() == 1 %}
-                        project
+                    project
                     {% else %}
-                        projects
+                    projects
                     {% endif %}
                     )
                 </p>
@@ -131,13 +131,14 @@
                     <div class="row g-3 align-items-center">
 
                         <div class="col-xl-2">Project</div>
-                        <div class="col-xl-2">Status</div>
+                        <div class="col-xl-1">Status</div>
                         <div class="col-xl">Client</div>
                         <div class="col-xl">Price</div>
                         <div class="col-xl">Designer</div>
                         <div class="col-xl">Start</div>
                         <div class="col-xl">End</div>
-                        <div class="col-xl">Days Left</div>
+                        <div class="col-xl">Due In</div>
+                        <div class="col-xl-auto"></div>
 
                     </div>
                 </div>
@@ -159,7 +160,7 @@
                         </div>
 
                         <!-- Status -->
-                        <div class="col-12 col-xl-2">
+                        <div class="col-12 col-xl-1">
                             <div class="project-cell" data-label="Status">
                                 <span class="project-badge {{ project.status_class }}">
                                     {{ project.status }}
@@ -213,11 +214,26 @@
                         </div>
 
                         <!-- Days Left -->
-                        <div class="col-12 col-xl">
+                        <div class="col-12 col-xl-1">
                             <div class="project-cell" data-label="Days Left">
                                 <strong class="{{ project.days_left_class }}">
                                     {{ project.days_left }}
                                 </strong>
+                            </div>
+                        </div>
+
+                        <!-- Project actions -->
+                        <div class="col-12 col-xl-auto">
+                            <div class="d-flex justify-content-center align-items-center gap-2 flex-nowrap">
+
+                                <button type="button" class="btn btn-sm btn-warning border-0" title="Edit project">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-danger border-0" title="Delete project">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+
                             </div>
                         </div>
                     </div>
