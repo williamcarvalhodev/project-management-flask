@@ -49,10 +49,49 @@ ecommerce_projects = [
 ]
 
 
+landing_pages_projects = [
+    Project(
+        project_id=4,
+        name="Law Firm Website",
+        status="In Progress",
+        status_class="status-in-progress",
+        client="Doe John",
+        price=1500.00,
+        designer_cost=200.00,
+        start="10/07/2026",
+        end="10/10/2026",
+        days_left="31 days",
+        days_left_class="project-in-progress",
+        accepted=True
+    ),
+
+    Project(
+        project_id=5,
+        name="Accounting Website",
+        status="Completed",
+        status_class="status-completed",
+        client="Adam Smith",
+        price=900.00,
+        designer_cost=150.00,
+        start="25/05/2026",
+        end="13/07/2026",
+        days_left="Completed",
+        days_left_class="project-completed",
+        accepted=True
+    )
+]
+
+
 project_groups = [
     ProjectGroup(
         group_id=1,
         name="E-commerce Websites",
         projects=ecommerce_projects
+    ),
+
+    ProjectGroup(
+        group_id=2,
+        name="Landing Pages",
+        projects=landing_pages_projects
     )
 ]
