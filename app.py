@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from data.dashboard_data import recent_activities, projects_progress, summary
+from data.tracker_data import project_groups
 
 
 
@@ -22,7 +23,10 @@ def dashboard():
 
 @app.route("/project_tracker")
 def project_tracker():
-    return render_template("project_tracker.html")
+    return render_template(
+        "project_tracker.html",
+        project_groups=project_groups
+    )
 
 
 @app.route("/in_progress")

@@ -11,19 +11,30 @@
     </div>
 
     <div class="projects-content">
-        <!-- E-commerce website content section -->
+
+        <!-- Loop through each project group -->
+        {% for group in project_groups %}
         <div class="col-12 mt-4">
-            <button onclick=toggleSubTable(this) class="text-start dropdown-btn">
+            <button onclick="toggleSubTable(this)" class="text-start dropdown-btn">
                 <i class="bi bi-chevron-down"></i>
-                <span>E-commerce Websites</span>
-                <p>( 1 proposal(s) )</p>
+                <span>{{ group.name }}</span>
+                <p>
+                    (
+                        {{ group.project_count() }}
+                        {% if group.project_count() == 1 %}
+                            project
+                        {% else %}
+                            projects
+                        {% endif %}
+                    )
+                </p>
             </button>
 
             <div class="project-grid-card">
-
                 <!-- Table header -->
                 <div class="project-grid-header d-none d-xl-block">
                     <div class="row g-3 align-items-center">
+
                         <div class="col-xl-2">Project</div>
                         <div class="col-xl-2">Status</div>
                         <div class="col-xl">Client</div>
@@ -32,78 +43,103 @@
                         <div class="col-xl">Start</div>
                         <div class="col-xl">End</div>
                         <div class="col-xl">Days Left</div>
+
                     </div>
                 </div>
 
-                <!-- Project Details -->
+                <!-- Loop through each project -->
+                {% for project in group.projects %}
                 <article class="project-grid-row">
                     <div class="row g-3 align-items-center">
 
+                        <!-- Project -->
                         <div class="col-12 col-xl-2">
                             <div class="project-cell" data-label="Project">
                                 <div class="project-title">
-                                    <strong>A Bella Borda</strong>
+                                    <strong>
+                                        {{ project.name }}
+                                    </strong>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Status -->
                         <div class="col-12 col-xl-2">
                             <div class="project-cell" data-label="Status">
-                                <span class="project-badge status-proposal">
-                                    Proposal Sent
+                                <span class="project-badge {{ project.status_class }}">
+                                    {{ project.status }}
                                 </span>
                             </div>
                         </div>
 
+                        <!-- Client -->
                         <div class="col-12 col-xl">
                             <div class="project-cell" data-label="Client">
-                                <span class="project-value">Sabrina</span>
+                                <span class="project-value">
+                                    {{ project.client }}
+                                </span>
                             </div>
                         </div>
 
+                        <!-- Price -->
                         <div class="col-12 col-xl">
                             <div class="project-cell" data-label="Price">
-                                <span class="project-value">€558</span>
+                                <span class="project-value">
+                                    €{{ "%.2f"|format(project.price) }}
+                                </span>
                             </div>
                         </div>
 
+                        <!-- Designer -->
                         <div class="col-12 col-xl">
                             <div class="project-cell" data-label="Designer">
-                                <span class="project-value">€0</span>
+                                <span class="project-value">
+                                    €{{ "%.2f"|format(project.designer_cost) }}
+                                </span>
                             </div>
                         </div>
 
+                        <!-- Start -->
                         <div class="col-12 col-xl">
                             <div class="project-cell" data-label="Start">
-                                <span class="project-value">-</span>
+                                <span class="project-value">
+                                    {{ project.start }}
+                                </span>
                             </div>
                         </div>
 
+                        <!-- End -->
                         <div class="col-12 col-xl">
                             <div class="project-cell" data-label="End">
-                                <span class="project-value">-</span>
+                                <span class="project-value">
+                                    {{ project.end }}
+                                </span>
                             </div>
                         </div>
 
+                        <!-- Days Left -->
                         <div class="col-12 col-xl">
                             <div class="project-cell" data-label="Days Left">
-                                <strong class="project-pending">
-                                    Pending
+                                <strong class="{{ project.days_left_class }}">
+                                    {{ project.days_left }}
                                 </strong>
                             </div>
                         </div>
-
                     </div>
                 </article>
+                {% endfor %}
 
                 <!-- Projects summary -->
                 <div class="project-grid-footer">
-                    <span>1 proposal(s)</span>
-                    <strong>Total net: €527.00</strong>
+                    <strong>
+                        Total net:
+                        €{{ "%.2f"|format(group.total_net()) }}
+                    </strong>
                 </div>
-
             </div>
         </div>
+        {% endfor %}
+
     </div>
 </div>
 {% endblock %}
