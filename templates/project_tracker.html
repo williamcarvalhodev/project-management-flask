@@ -12,6 +12,101 @@
 
     <div class="projects-content">
 
+        <div class="d-flex justify-content-start justify-content-md-end mt-2">
+            <button type="button" class="btn btn-primary border-0 rounded-0" data-bs-toggle="modal"
+                data-bs-target="#addProjectModal">
+                <i class="bi bi-plus-lg"></i>
+                Add Project
+            </button>
+        </div>
+
+        <!-- Add Project Modal -->
+        <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel"
+            aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content border-0 rounded-0">
+
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addProjectModalLabel">
+                            Add Project
+                        </h5>
+
+                        <!-- Closes the modal using Bootstrap JavaScript -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!-- Project form -->
+                        <form>
+                            <!-- Project category -->
+                            <div class="mb-3">
+                                <label for="group_id" class="form-label">
+                                    Category
+                                </label>
+                                <select id="group_id" name="group_id" class="form-select">
+
+                                    <!-- Creates one option for each project group -->
+                                    {% for group in project_groups %}
+                                    <option value="{{ group.group_id }}">
+                                        {{ group.name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Project name -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label">
+                                    Project Name
+                                </label>
+                                <input type="text" id="name" name="name" class="form-control">
+                            </div>
+
+                            <!-- Client name -->
+                            <div class="mb-3">
+                                <label for="client" class="form-label">
+                                    Client
+                                </label>
+                                <input type="text" id="client" name="client" class="form-control">
+                            </div>
+
+                            <!-- Project price -->
+                            <div class="mb-3">
+                                <label for="price" class="form-label">
+                                    Price
+                                </label>
+
+                                <input type="number" id="price" name="price" step="0.01" class="form-control">
+                            </div>
+
+                            <!-- Designer cost -->
+                            <div class="mb-3">
+                                <label for="designer_cost" class="form-label">
+                                    Designer Cost
+                                </label>
+                                <input type="number" id="designer_cost" name="designer_cost" step="0.01"
+                                    class="form-control">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal actions -->
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-secondary border-0 rounded-0" data-bs-dismiss="modal">
+                            Cancel
+                        </button>      
+                        <button type="button" class="btn btn-primary border-0 rounded-0">
+                            Add Project
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Loop through each project group -->
         {% for group in project_groups %}
         <div class="col-12 mt-4">
@@ -20,12 +115,12 @@
                 <span>{{ group.name }}</span>
                 <p>
                     (
-                        {{ group.project_count() }}
-                        {% if group.project_count() == 1 %}
-                            project
-                        {% else %}
-                            projects
-                        {% endif %}
+                    {{ group.project_count() }}
+                    {% if group.project_count() == 1 %}
+                    project
+                    {% else %}
+                    projects
+                    {% endif %}
                     )
                 </p>
             </button>
