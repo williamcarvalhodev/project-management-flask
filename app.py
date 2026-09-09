@@ -1,7 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from data.dashboard_data import recent_activities, projects_progress, summary
 from data.tracker_data import project_groups
-
+from data.models import Project
 
 
 app = Flask(__name__)
@@ -27,6 +27,52 @@ def project_tracker():
         "project_tracker.html",
         project_groups=project_groups
     )
+
+
+@app.route("/projects/add", methods=["POST"])
+def add_project():
+    group_id = int(request.form["group_id"])
+    name = request.form["name"]
+    client = request.form["client"]
+    price = float(request.form["price"])
+    designer_cost = float(request.form["designer_cost"])
+
+    selected_group = None
+
+    for group in project_groups:
+        if group.group_id == group_id:
+            selected_group = group
+            break
+        
+    # Find the next available project ID
+    project_ids = []
+
+    for group in project_groups:
+        for project in group.projects:
+            project_ids.append(project.project_id)
+
+    new_project_id = max(project_ids) + 1
+    
+    # Create the new project
+    new_project = Project(
+        project_id=new_project_id,
+        name=name,
+        status="Proposal Sent",
+        status_class="status-proposal",
+        client=client,
+        price=price,
+        designer_cost=designer_cost,
+        start="-",
+        end="-",
+        days_left="Pending",
+        days_left_class="project-pending",
+        accepted=False
+    )
+
+    # Add the project to the selected group
+    selected_group.add_project(new_project)
+
+    return redirect(url_for("project_tracker"))
 
 
 @app.route("/in_progress")

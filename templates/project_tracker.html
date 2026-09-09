@@ -41,7 +41,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <!-- Project form -->
-                        <form>
+                        <form id="addProjectForm" method="POST" action="{{ url_for('add_project') }}">
                             <!-- Project category -->
                             <div class="mb-3">
                                 <label for="group_id" class="form-label">
@@ -95,11 +95,11 @@
                     </div>
 
                     <!-- Modal actions -->
-                    <div class="modal-footer">                    
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary border-0 rounded-0" data-bs-dismiss="modal">
                             Cancel
-                        </button>      
-                        <button type="button" class="btn btn-primary border-0 rounded-0">
+                        </button>
+                        <button type="submit" form="addProjectForm" class="btn btn-primary border-0 rounded-0">
                             Add Project
                         </button>
                     </div>
@@ -117,9 +117,9 @@
                     (
                     {{ group.project_count() }}
                     {% if group.project_count() == 1 %}
-                    project
+                        project
                     {% else %}
-                    projects
+                        projects
                     {% endif %}
                     )
                 </p>

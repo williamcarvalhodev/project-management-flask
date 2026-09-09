@@ -73,3 +73,6 @@ class ProjectGroup:
             project.calculate_net()
             for project in self.projects
         )
+        
+    def add_project(self, project):
+        self.projects.append(project)
