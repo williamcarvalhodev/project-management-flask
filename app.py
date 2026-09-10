@@ -109,6 +109,25 @@ def in_progress():
         "in_progress.html",
         in_progress_projects=in_progress_projects
     )
+    
+    
+@app.route("/projects/<int:project_id>/complete", methods=["POST"])
+def complete_project(project_id):
+
+    # Find the project by ID and mark it as completed
+    for group in project_groups:
+        for project in group.projects:
+
+            if project.project_id == project_id:
+                project.status = "Completed"
+                project.status_class = "status-completed"
+                project.days_left = "Completed"
+                project.days_left_class = "project-completed"
+                project.completed_date = datetime.now().strftime("%d/%m/%Y")
+
+                return redirect(url_for("in_progress"))
+
+    return redirect(url_for("in_progress"))
 
 
 @app.route("/completed_projects")
@@ -119,27 +138,37 @@ def completed_projects():
         for project in group.projects:
 
             if project.status == "Completed":
+
+                # Use completed date if available, otherwise use the original end date
+                date_value = project.completed_date or project.end
+
                 completed_date = datetime.strptime(
-                    project.end,
+                    date_value,
                     "%d/%m/%Y"
                 )
 
                 month_name = completed_date.strftime("%B %Y")
 
+                # Create the month group and its financial summary
                 if month_name not in completed_projects_by_month:
-                    completed_projects_by_month[month_name] = []
+                    completed_projects_by_month[month_name] = {
+                        "projects": [],
+                        "total_net": 0
+                    }
 
-                completed_projects_by_month[month_name].append(
+                completed_projects_by_month[month_name]["projects"].append(
                     {
                         "project": project,
                         "project_type": group.name
                     }
                 )
 
+                completed_projects_by_month[month_name]["total_net"] += project.calculate_net()
+
     return render_template(
         "completed_projects.html",
         completed_projects_by_month=completed_projects_by_month
-    )  
+    )
 
 
 if __name__ == "__main__":

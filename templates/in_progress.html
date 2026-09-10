@@ -6,7 +6,9 @@
 
 <div class="main-content-tracker">
     <div class="container-tracker">
-        <h2 class="text-start">In Progress Dashboard</h2>
+        <h2 class="text-start">
+            In Progress Dashboard
+        </h2>
         <p class="text-start">
             Track active projects, tasks, progress, and deadlines in one place.
         </p>
@@ -14,7 +16,9 @@
 
     <div class="projects-content">
         <div class="col-12 mt-4">
+            {% if in_progress_projects %}
             <div class="project-grid-card">
+
                 <!-- Table header -->
                 <div class="project-grid-header d-none d-xl-block">
                     <div class="row g-3 align-items-center">
@@ -22,7 +26,7 @@
                         <div class="col-xl-2">Category</div>
                         <div class="col-xl-1">Tasks</div>
                         <div class="col-xl-3 text-center">Progress</div>
-                        <div class="col-xl-2 text-center">Deadline</div>
+                        <div class="col-xl-2 text-center"> Deadline</div>
                         <div class="col-xl-2"></div>
                     </div>
                 </div>
@@ -35,9 +39,7 @@
                         <div class="col-12 col-xl-2">
                             <div class="project-cell" data-label="Project">
                                 <div class="project-title">
-                                    <strong>
-                                        {{ item.project.name }}
-                                    </strong>
+                                    <strong>{{ item.project.name }}</strong>
                                 </div>
                             </div>
                         </div>
@@ -45,9 +47,7 @@
                         <!-- Project category -->
                         <div class="col-12 col-xl-2">
                             <div class="project-cell" data-label="Category">
-                                <span class="project-value">
-                                    {{ item.project_type }}
-                                </span>
+                                <span class="project-value">{{ item.project_type }}</span>
                             </div>
                         </div>
 
@@ -67,7 +67,8 @@
                             <div class="project-cell" data-label="Progress">
                                 <div class="w-100">
                                     <div class="progress border-0 rounded-0">
-                                        <div class="progress-bar" role="progressbar"
+                                        <div class="progress-bar" 
+                                            role="progressbar"
                                             style="width: {{ item.project.calculate_progress() }}%;">
                                             {{ item.project.calculate_progress() }}%
                                         </div>
@@ -77,29 +78,42 @@
                         </div>
 
                         <!-- Deadline -->
-                        <div class="col-12 col-xl">
-                            <div class="project-cell text-center data-label="Deadline">
-                                <span class="project-value">
-                                    <span class="project-value">
-                                        {{ item.project.end }}
-                                    </span>
+                        <div class="col-12 col-xl-2">
+                            <div class="project-cell text-center" data-label="Deadline">
+                                <span class="project-value">{{ item.project.end }}</span>
                             </div>
                         </div>
 
                         <!-- Complete project button -->
                         <div class="col-12 col-xl-2 d-flex justify-content-start justify-content-md-end">
                             <div class="project-cell d-flex justify-content-center">
-                                <button type="button" class="btn btn-sm btn-success border-0 rounded-0"
-                                    title="Mark project as completed">
-                                    <i class="bi bi-check-circle me-1"></i>
-                                    Finish Project
-                                </button>
+                                <form method="POST"
+                                    action="{{ url_for('complete_project', project_id=item.project.project_id) }}">
+
+                                    <button type="submit" class="btn btn-sm btn-success border-0 rounded-0"
+                                        title="Mark project as completed">
+                                        <i class="bi bi-check-circle me-1"></i>
+                                        Finish Project
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </article>
+
                 {% endfor %}
+
             </div>
+
+            {% else %}
+
+            <!-- Empty state -->
+            <div class="text-center py-2">
+                <i class="bi bi-check-circle fs-1 text-success"></i>
+                <p class="text-muted mb-0">There are no projects in progress to track.</p>
+            </div>
+
+            {% endif %}
         </div>
     </div>
 </div>

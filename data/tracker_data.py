@@ -31,7 +31,8 @@ ecommerce_projects = [
         days_left_class="project-completed",
         accepted=True,
         invoice_required=True,
-        project_link="https://williamcarvalhodev.github.io/run-together/"
+        project_link="https://williamcarvalhodev.github.io/run-together/",
+        completed_date="20/03/2026"
     ),
     
     Project(
@@ -85,7 +86,8 @@ landing_pages_projects = [
         days_left_class="project-completed",
         accepted=True,
         invoice_required=True,
-        project_link="https://williamcarvalhodev.com"
+        project_link="https://williamcarvalhodev.com",
+        completed_date="13/07/2026"
     )
 ]
 

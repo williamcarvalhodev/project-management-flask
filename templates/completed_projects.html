@@ -12,10 +12,10 @@
         </p>
     </div>
 
+
     <div class="projects-content">
         <div class="col-12 mt-4">
-            {% for month, projects in completed_projects_by_month.items() %}
-
+            {% for month, data in completed_projects_by_month.items() %}
             <!-- Completed projects grouped by month -->
             <div class="col-12 mt-4">
                 <button onclick="toggleSubTable(this)" class="text-start dropdown-btn">
@@ -25,9 +25,9 @@
                     </span>
                     <p>
                         (
-                        {{ projects|length }}
+                        {{ data.projects|length }}
 
-                        {% if projects|length == 1 %}
+                        {% if data.projects|length == 1 %}
                         project
                         {% else %}
                         projects
@@ -35,36 +35,29 @@
                         )
                     </p>
                 </button>
-                <div class="project-grid-card">
 
+                <div class="project-grid-card">
                     <!-- Table header -->
                     <div class="project-grid-header d-none d-xl-block">
                         <div class="row g-3 align-items-center">
-
                             <div class="col-xl-3">Project</div>
                             <div class="col-xl-3">Category</div>
                             <div class="col-xl-2">Completed</div>
-                            <div class="col-xl-1">Net</div>
+                            <div class="col-xl-1">Price</div>
                             <div class="col-xl-1 text-center">Invoice</div>
                             <div class="col-xl-2 text-center">Link</div>
-
                         </div>
                     </div>
 
                     <!-- Loop through completed projects in the month -->
-                    {% for item in projects %}
-
+                    {% for item in data.projects %}
                     <article class="project-grid-row">
-
                         <div class="row g-3 align-items-center">
-
                             <!-- Project -->
                             <div class="col-12 col-xl-3">
                                 <div class="project-cell" data-label="Project">
                                     <div class="project-title">
-                                        <strong>
-                                            {{ item.project.name }}
-                                        </strong>
+                                        <strong>{{ item.project.name }}</strong>
                                     </div>
                                 </div>
                             </div>
@@ -72,76 +65,66 @@
                             <!-- Category -->
                             <div class="col-12 col-xl-3">
                                 <div class="project-cell" data-label="Category">
-                                    <span class="project-value">
-                                        {{ item.project_type }}
-                                    </span>
+                                    <span class="project-value">{{ item.project_type }}</span>
                                 </div>
                             </div>
 
                             <!-- Completed date -->
                             <div class="col-12 col-xl-2">
                                 <div class="project-cell" data-label="Completed">
-                                    <span class="project-value">
-                                        {{ item.project.end }}
-                                    </span>
+                                    <span class="project-value">{{ item.project.completed_date }}</span>
                                 </div>
                             </div>
 
                             <!-- Net value -->
-                            <div class="col-12 col-xl">
-                                <div class="project-cell" data-label="Price">
-                                    <span class="project-value">
-                                        €{{ "%.2f"|format(item.project.calculate_net()) }}
-                                    </span>
+                            <div class="col-12 col-xl-1">
+                                <div class="project-cell" data-label="Net">
+                                    <span class="project-value">€{{ "%.2f"|format(item.project.calculate_net()) }}</span>
                                 </div>
                             </div>
 
                             <!-- Invoice -->
                             <div class="col-12 col-xl-1 d-flex justify-content-start justify-content-md-center">
                                 <div class="project-cell" data-label="Invoice">
-
                                     {% if item.project.invoice_required %}
-                                    <span class="invoice-yes">
-                                        Yes
-                                    </span>
+                                        <span class="invoice-yes">Yes</span>
                                     {% else %}
-                                    <span class="invoice-no">
-                                        No
-                                    </span>
+                                        <span class="invoice-no">No</span>
                                     {% endif %}
-
                                 </div>
                             </div>
 
                             <!-- Project link -->
                             <div class="col-12 col-xl-2 d-flex justify-content-start justify-content-md-center">
                                 <div class="project-cell" data-label="Project Link">
-
                                     {% if item.project.project_link %}
-                                    <a href="{{ item.project.project_link }}" target="_blank" rel="noopener noreferrer"
-                                        class="btn btn-sm btn-primary border-0 rounded-0">
-                                        View Project
-                                    </a>
+                                        <a href="{{ item.project.project_link }}" 
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="btn btn-sm btn-primary border-0 rounded-0">
+                                            View Project
+                                        </a>
                                     {% else %}
-                                    <span class="text-muted">
-                                        No link
-                                    </span>
+                                        <span class="text-muted">No link</span>
                                     {% endif %}
-
                                 </div>
                             </div>
-
                         </div>
-
                     </article>
 
                     {% endfor %}
 
+                    <!-- Monthly summary -->
+                    <div class="project-grid-footer">
+                        <strong>
+                            Total net:
+                            €{{ "%.2f"|format(data.total_net) }}
+                        </strong>
+                    </div>
                 </div>
-
             </div>
 
             {% endfor %}
+
         </div>
     </div>
 </div>

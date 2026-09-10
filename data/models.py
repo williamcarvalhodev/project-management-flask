@@ -41,7 +41,8 @@ class Project:
         total_tasks=0,
         completed_tasks=0,
         invoice_required=False,
-        project_link=""        
+        project_link="", 
+        completed_date=None       
     ):
         self.project_id = project_id
         self.name = name
@@ -59,6 +60,7 @@ class Project:
         self.completed_tasks = completed_tasks
         self.invoice_required = invoice_required
         self.project_link = project_link
+        self.completed_date = completed_date
 
     def calculate_net(self):
         if not self.accepted:
