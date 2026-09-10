@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from data.dashboard_data import recent_activities, projects_progress, summary
 from data.tracker_data import project_groups
 from data.models import Project
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -112,7 +113,33 @@ def in_progress():
 
 @app.route("/completed_projects")
 def completed_projects():
-    return render_template("completed_projects.html")   
+    completed_projects_by_month = {}
+
+    for group in project_groups:
+        for project in group.projects:
+
+            if project.status == "Completed":
+                completed_date = datetime.strptime(
+                    project.end,
+                    "%d/%m/%Y"
+                )
+
+                month_name = completed_date.strftime("%B %Y")
+
+                if month_name not in completed_projects_by_month:
+                    completed_projects_by_month[month_name] = []
+
+                completed_projects_by_month[month_name].append(
+                    {
+                        "project": project,
+                        "project_type": group.name
+                    }
+                )
+
+    return render_template(
+        "completed_projects.html",
+        completed_projects_by_month=completed_projects_by_month
+    )  
 
 
 if __name__ == "__main__":

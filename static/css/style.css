@@ -416,13 +416,15 @@ aside nav a.active {
     font-weight: 700;
 }
 
-.project-completed {
+.project-completed,
+.invoice-yes {
     color: #00ab69;
     font-size: 12px;
     font-weight: 700;
 }
 
-.project-pending {
+.project-pending,
+.invoice-no {
     color: #d97706;
     font-size: 12px;
     font-weight: 700;
