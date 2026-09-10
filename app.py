@@ -23,6 +23,37 @@ def dashboard():
             if project.status == "In Progress":
                 projects_progress.append(project)
 
+    monthly_earnings = 0
+    annual_earnings = 0
+    current_date = datetime.now()
+
+    # Calculate monthly and annual earnings
+    for group in project_groups:
+        for project in group.projects:
+
+            if project.status == "Completed":
+
+                date_value = project.completed_date or project.end
+
+                completed_date = datetime.strptime(
+                    date_value,
+                    "%d/%m/%Y"
+                )
+
+                # Monthly earnings
+                if (
+                    completed_date.month == current_date.month
+                    and completed_date.year == current_date.year
+                ):
+                    monthly_earnings += project.calculate_net()
+
+                # Annual earnings
+                if completed_date.year == current_date.year:
+                    annual_earnings += project.calculate_net()
+
+    summary["monthly_earnings"].value = f"€{monthly_earnings:,.0f}"
+    summary["annual_earnings"].value = f"€{annual_earnings:,.0f}"
+
     return render_template(
         "dashboard.html",
         activities=recent_activities,
