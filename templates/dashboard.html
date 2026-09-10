@@ -53,31 +53,31 @@
 
             <!-- Progress tracker section -->
             <div class="col-12 col-md-12 col-lg-6 col-xl-4">
-                <div class="info-card p-3 h-100">
+                <div class="info-card p-3 h-100 d-flex flex-column">
                     <h4 class="text-start">Progress Tracker</h4>
-
-                    <div class="open-projects-card">
+                    <div class="open-projects-card d-flex flex-column flex-grow-1">
                         <div class="open-projects-body">
-
-                            <!-- Loop through project data and dynamically render each progress bar -->
+                            <!-- Loop through in progress projects -->
                             {% for project in projects %}
                             <div class="project-progress">
                                 <div class="project-info">
                                     <span>{{ project.name }}</span>
-                                    <span>{{ project.progress }}%</span>
+                                    <span>{{ project.calculate_progress() }}%</span>
                                 </div>
                                 <div class="progress border-0 rounded-0">
-                                    <div class="progress-bar bg-{{ project.color }}" role="progressbar"
-                                        style="width: {{ project.progress }}%;" aria-valuenow="{{ project.progress }}"
-                                        aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar" 
+                                        role="progressbar"
+                                        style="width: {{ project.calculate_progress() }}%;"
+                                        aria-valuenow="{{ project.calculate_progress() }}" aria-valuemin="0"
+                                        aria-valuemax="100">
                                     </div>
                                 </div>
                             </div>
+
                             {% endfor %}
 
                         </div>
-
-                        <a href="{{ url_for('in_progress') }}" class="open-projects-footer">
+                        <a href="{{ url_for('in_progress') }}" class="open-projects-footer mt-auto">
                             <span>View All Projects</span>
                             <i class="bi bi-chevron-right"></i>
                         </a>

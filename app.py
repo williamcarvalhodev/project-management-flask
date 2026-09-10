@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from data.dashboard_data import recent_activities, projects_progress, summary
+from data.dashboard_data import recent_activities, summary
 from data.tracker_data import project_groups
 from data.models import Project
 from datetime import datetime
@@ -14,6 +14,15 @@ def home():
 
 @app.route("/dashboard")
 def dashboard():
+    projects_progress = []
+
+    # Get projects currently in progress
+    for group in project_groups:
+        for project in group.projects:
+
+            if project.status == "In Progress":
+                projects_progress.append(project)
+
     return render_template(
         "dashboard.html",
         activities=recent_activities,
