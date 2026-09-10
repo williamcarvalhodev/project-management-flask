@@ -97,6 +97,7 @@ def in_progress():
 
     for group in project_groups:
         for project in group.projects:
+
             if project.status == "In Progress":
                 in_progress_projects.append(
                     {
@@ -104,6 +105,14 @@ def in_progress():
                         "project_type": group.name
                     }
                 )
+
+    # Order projects by closest deadline
+    in_progress_projects.sort(
+        key=lambda item: datetime.strptime(
+            item["project"].end,
+            "%d/%m/%Y"
+        )
+    )
 
     return render_template(
         "in_progress.html",
@@ -149,7 +158,6 @@ def completed_projects():
 
                 month_name = completed_date.strftime("%B %Y")
 
-                # Create the month group and its financial summary
                 if month_name not in completed_projects_by_month:
                     completed_projects_by_month[month_name] = {
                         "projects": [],
@@ -164,6 +172,18 @@ def completed_projects():
                 )
 
                 completed_projects_by_month[month_name]["total_net"] += project.calculate_net()
+
+    # Order months from newest to oldest
+    completed_projects_by_month = dict(
+        sorted(
+            completed_projects_by_month.items(),
+            key=lambda item: datetime.strptime(
+                item[0],
+                "%B %Y"
+            ),
+            reverse=True
+        )
+    )
 
     return render_template(
         "completed_projects.html",
