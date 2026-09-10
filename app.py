@@ -123,18 +123,33 @@ def in_progress():
 @app.route("/projects/<int:project_id>/complete", methods=["POST"])
 def complete_project(project_id):
 
+    invoice_required = request.form["invoice_required"]
+    project_link = request.form["project_link"]
+
     # Find the project by ID and mark it as completed
     for group in project_groups:
         for project in group.projects:
 
             if project.project_id == project_id:
+
+                # Only complete projects with all tasks finished
+                if project.calculate_progress() < 100:
+                    return redirect(url_for("in_progress"))
+
+                project.invoice_required = invoice_required == "yes"
+                project.project_link = project_link
+
                 project.status = "Completed"
                 project.status_class = "status-completed"
+
                 project.days_left = "Completed"
                 project.days_left_class = "project-completed"
-                project.completed_date = datetime.now().strftime("%d/%m/%Y")
 
-                return redirect(url_for("in_progress"))
+                project.completed_date = datetime.now().strftime(
+                    "%d/%m/%Y"
+                )
+
+                return redirect(url_for("completed_projects"))
 
     return redirect(url_for("in_progress"))
 
