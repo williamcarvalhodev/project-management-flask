@@ -21,8 +21,8 @@
                         <div class="col-xl-2">Project</div>
                         <div class="col-xl-2">Category</div>
                         <div class="col-xl-1">Tasks</div>
-                        <div class="col-xl-3">Progress</div>
-                        <div class="col-xl-2">Deadline</div>
+                        <div class="col-xl-3 text-center">Progress</div>
+                        <div class="col-xl-2 text-center">Deadline</div>
                         <div class="col-xl-2"></div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         <div class="col-12 col-xl-3">
                             <div class="project-cell" data-label="Progress">
                                 <div class="w-100">
-                                    <div class="progress">
+                                    <div class="progress border-0 rounded-0">
                                         <div class="progress-bar" role="progressbar"
                                             style="width: {{ item.project.calculate_progress() }}%;">
                                             {{ item.project.calculate_progress() }}%
@@ -77,9 +77,12 @@
                         </div>
 
                         <!-- Deadline -->
-                        <div class="col-12 col-xl-2">
-                            <div class="project-cell" data-label="Deadline">
-                                <strong>{{ item.project.end }}</strong>
+                        <div class="col-12 col-xl">
+                            <div class="project-cell text-center data-label="Deadline">
+                                <span class="project-value">
+                                    <span class="project-value">
+                                        {{ item.project.end }}
+                                    </span>
                             </div>
                         </div>
 
