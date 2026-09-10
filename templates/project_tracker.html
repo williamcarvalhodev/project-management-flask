@@ -144,7 +144,7 @@
                 </div>
 
                 <!-- Loop through each project -->
-                {% for project in group.projects %}
+                {% for project in group.ordered_projects() %}
                 <article class="project-grid-row">
                     <div class="row g-3 align-items-center">
 

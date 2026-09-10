@@ -92,9 +92,26 @@ class ProjectGroup:
             project.calculate_net()
             for project in self.projects
         )
-        
+
     def add_project(self, project):
         self.projects.append(project)
-        
+
     def delete_project(self, project):
-        self.projects.remove(project)    
+        self.projects.remove(project)
+
+    # Order projects by status
+    def ordered_projects(self):
+        ordered_projects = []
+
+        status_order = [
+            "Proposal Sent",
+            "In Progress",
+            "Completed"
+        ]
+
+        for status in status_order:
+            for project in self.projects:
+                if project.status == status:
+                    ordered_projects.append(project)
+
+        return ordered_projects   
