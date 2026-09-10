@@ -37,7 +37,9 @@ class Project:
         end,
         days_left,
         days_left_class,
-        accepted=False
+        accepted=False,
+        total_tasks=0,
+        completed_tasks=0        
     ):
         self.project_id = project_id
         self.name = name
@@ -51,12 +53,23 @@ class Project:
         self.days_left = days_left
         self.days_left_class = days_left_class
         self.accepted = accepted
+        self.total_tasks = total_tasks
+        self.completed_tasks = completed_tasks
 
     def calculate_net(self):
         if not self.accepted:
             return 0
 
         return self.price - self.designer_cost
+    
+    # Calculate project progress based on completed tasks
+    def calculate_progress(self):
+        if self.total_tasks == 0:
+            return 0
+
+        return int(
+            (self.completed_tasks / self.total_tasks) * 100
+        )
 
 
 class ProjectGroup:

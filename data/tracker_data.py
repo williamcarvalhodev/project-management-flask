@@ -44,7 +44,9 @@ ecommerce_projects = [
         end="30/09/2026",
         days_left="21 days",
         days_left_class="project-in-progress",
-        accepted=True
+        accepted=True,
+        total_tasks=10,
+        completed_tasks=7
     )
 ]
 
@@ -62,7 +64,9 @@ landing_pages_projects = [
         end="10/10/2026",
         days_left="31 days",
         days_left_class="project-in-progress",
-        accepted=True
+        accepted=True,
+        total_tasks=10,
+        completed_tasks=3
     ),
 
     Project(

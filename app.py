@@ -92,7 +92,22 @@ def delete_project(project_id):
 
 @app.route("/in_progress")
 def in_progress():
-    return render_template("in_progress.html")
+    in_progress_projects = []
+
+    for group in project_groups:
+        for project in group.projects:
+            if project.status == "In Progress":
+                in_progress_projects.append(
+                    {
+                        "project": project,
+                        "project_type": group.name
+                    }
+                )
+
+    return render_template(
+        "in_progress.html",
+        in_progress_projects=in_progress_projects
+    )
 
 
 @app.route("/completed_projects")
