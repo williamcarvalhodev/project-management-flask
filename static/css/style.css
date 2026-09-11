@@ -476,7 +476,7 @@ aside nav a.active {
 
 
 .complete-project-button,
-.project-link-butto,
+.project-link-button,
 .edit-button,
 .delete-button {
     font-size: 10.5px;
@@ -614,7 +614,7 @@ aside nav a.active {
     }
 
     .complete-project-button,
-    .project-link-butto,
+    .project-link-button,
     .edit-button,
     .delete-button {
         font-size: 12px;
