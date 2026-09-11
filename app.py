@@ -158,21 +158,12 @@ def start_project(project_id):
 
                 project.start = start_date
                 project.end = end_date
-
                 project.status = "In Progress"
                 project.status_class = "status-in-progress"
                 project.accepted = True
 
                 # Set tasks based on project category
-                if group.name == "E-commerce Websites":
-                    project.total_tasks = 23
-
-                elif group.name == "Landing Pages":
-                    project.total_tasks = 18
-
-                elif group.name == "Institutional Websites":
-                    project.total_tasks = 16
-
+                project.total_tasks = group.get_total_tasks()
                 project.completed_tasks = 0
 
                 return redirect(url_for("project_tracker"))

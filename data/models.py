@@ -119,6 +119,19 @@ class ProjectGroup:
 
     def delete_project(self, project):
         self.projects.remove(project)
+        
+    # Get total tasks based on project category
+    def get_total_tasks(self):
+        if self.name == "E-commerce Websites":
+            return 23
+
+        elif self.name == "Landing Pages":
+            return 18
+
+        elif self.name == "Institutional Websites":
+            return 16
+
+        return 0    
 
     # Order projects by status
     def ordered_projects(self):
