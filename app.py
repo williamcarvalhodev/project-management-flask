@@ -28,7 +28,13 @@ def dashboard():
 
             if project.status == "Proposal Sent":
                 pending_approval += 1
-
+    
+    # Order projects from highest to lowest progress
+    projects_progress.sort(
+        key=Project.calculate_progress,
+        reverse=True
+    )
+    
     monthly_earnings = 0
     annual_earnings = 0
     current_date = datetime.now()
