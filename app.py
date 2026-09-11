@@ -73,6 +73,29 @@ def dashboard():
 
 @app.route("/project_tracker")
 def project_tracker():
+    current_date = datetime.now().date()
+
+    # Calculate days left for active projects
+    for group in project_groups:
+        for project in group.projects:
+
+            if project.status == "In Progress":
+                end_date = datetime.strptime(
+                    project.end,
+                    "%d/%m/%Y"
+                ).date()
+
+                days_left = (end_date - current_date).days
+
+                if days_left > 0:
+                    project.days_left = f"{days_left} days"
+
+                elif days_left == 0:
+                    project.days_left = "Today"
+
+                else:
+                    project.days_left = "Overdue"
+
     return render_template(
         "project_tracker.html",
         project_groups=project_groups
@@ -121,6 +144,52 @@ def add_project():
 
     # Add the project to the selected group
     selected_group.add_project(new_project)
+
+    return redirect(url_for("project_tracker"))
+
+
+@app.route("/projects/<int:project_id>/start", methods=["POST"])
+def start_project(project_id):
+    start_date = request.form["start"]
+    end_date = request.form["end"]
+
+    # Convert dates to dd/mm/yyyy
+    start_date = datetime.strptime(
+        start_date,
+        "%Y-%m-%d"
+    ).strftime("%d/%m/%Y")
+
+    end_date = datetime.strptime(
+        end_date,
+        "%Y-%m-%d"
+    ).strftime("%d/%m/%Y")
+
+    # Find the project and start it
+    for group in project_groups:
+        for project in group.projects:
+
+            if project.project_id == project_id:
+
+                project.start = start_date
+                project.end = end_date
+
+                project.status = "In Progress"
+                project.status_class = "status-in-progress"
+                project.accepted = True
+
+                # Set tasks based on project category
+                if group.name == "E-commerce Websites":
+                    project.total_tasks = 23
+
+                elif group.name == "Landing Pages":
+                    project.total_tasks = 18
+
+                elif group.name == "Institutional Websites":
+                    project.total_tasks = 16
+
+                project.completed_tasks = 0
+
+                return redirect(url_for("project_tracker"))
 
     return redirect(url_for("project_tracker"))
 

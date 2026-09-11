@@ -30,6 +30,8 @@ ecommerce_projects = [
         days_left="Completed",
         days_left_class="project-completed",
         accepted=True,
+        total_tasks=23,
+        completed_tasks=23,
         invoice_required=True,
         project_link="https://williamcarvalhodev.github.io/run-together/",
         completed_date="20/03/2026"
@@ -48,8 +50,8 @@ ecommerce_projects = [
         days_left="21 days",
         days_left_class="project-in-progress",
         accepted=True,
-        total_tasks=10,
-        completed_tasks=10
+        total_tasks=23,
+        completed_tasks=18
     )
 ]
 
@@ -68,8 +70,8 @@ landing_pages_projects = [
         days_left="31 days",
         days_left_class="project-in-progress",
         accepted=True,
-        total_tasks=10,
-        completed_tasks=3
+        total_tasks=18,
+        completed_tasks=7
     ),
 
     Project(
@@ -85,6 +87,47 @@ landing_pages_projects = [
         days_left="Completed",
         days_left_class="project-completed",
         accepted=True,
+        total_tasks=18,
+        completed_tasks=18,
+        invoice_required=True,
+        project_link="https://williamcarvalhodev.com",
+        completed_date="13/07/2026"
+    )
+]
+
+institutional_websites = [
+    Project(
+            project_id=6,
+            name="Cleaning Website",
+            status="In Progress",
+            status_class="status-in-progress",
+            client="Jean Doe",
+            price=1100.00,
+            designer_cost=100.00,
+            start="27/07/2026",
+            end="27/11/2026",
+            days_left="31 days",
+            days_left_class="project-in-progress",
+            accepted=True,
+            total_tasks=16,
+            completed_tasks=3
+    ),
+    
+    Project(
+        project_id=6,
+        name="Financial Website",
+        status="Completed",
+        status_class="status-completed",
+        client="Doug Smith",
+        price=1400.00,
+        designer_cost=250.00,
+        start="25/05/2026",
+        end="13/07/2026",
+        days_left="Completed",
+        days_left_class="project-completed",
+        accepted=True,
+        total_tasks=16,
+        completed_tasks=16,
         invoice_required=True,
         project_link="https://williamcarvalhodev.com",
         completed_date="13/07/2026"
@@ -103,5 +146,11 @@ project_groups = [
         group_id=2,
         name="Landing Pages",
         projects=landing_pages_projects
+    ),
+    
+    ProjectGroup(
+        group_id=3,
+        name="Institutional Websites",
+        projects=institutional_websites
     )
 ]
