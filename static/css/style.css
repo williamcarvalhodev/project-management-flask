@@ -19,6 +19,98 @@ body {
     grid-template-columns: 300px minmax(0, 1fr);
 }
 
+/* Home - Login page */
+.home-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: block;
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+
+.login-logo {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 385px;
+    padding: 30px;
+    background-color: #fcfcfc;
+    border-radius: 12px;
+}
+
+.login-card h1 {
+    font-family: Lovelo, sans-serif;
+    color: #171717;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.login-card p {
+    font-family: Lekton, monospace;
+    color: #666666;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.login-card form,
+.login-card input,
+.login-card label {
+    font-family: Lekton, monospace;
+    color: #666666;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.login-card input {
+    background-color: #e8e8e8;
+}
+
+.custombtn {
+    font-family: Lekton, monospace;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 0.75rem;
+    background-color: #f5B547;
+    border: none;
+    border-radius: 8px;
+    color: #171717;
+}
+
+.login-card .form-control {
+    padding: 0.75rem;
+}
+
+.login-card .text-danger {
+    font-size: 10px;
+    color: #dc3545;
+}
+
+.copyright {
+    font-family: Lekton, monospace;
+    color: #666666;
+    font-size: 13px;
+    text-align: center;
+}
+
 /* Mobile logo */
 .mobile-logo {
     display: none;

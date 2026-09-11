@@ -1,8 +1,95 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Home | Project Management{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A simple and efficient project management system to organize projects, track tasks, and improve team productivity.">
 
-{% block content %}
-    <h1>Welcome to Project Management</h1>
-    <p>Manage your projects in one place.</p>
-{% endblock %}
+    <title>{% block title %}Project Management{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="home-page">
+    <main class="login-page">
+
+        <!-- Logo section -->
+        <header class="text-center">
+            <img
+                src="{{ url_for('static', filename='images/full-logo-white.png') }}"
+                alt="William Carvalho Web Developer logo"
+                class="login-logo"
+            >
+        </header>
+
+
+        <!-- Login section -->
+        <section class="login-card">
+            <h1 class="text-center">Welcome</h1>
+
+            <p class="text-center">Access the management panel</p>
+
+            <!-- Login form -->
+            <form method="POST" action="{{ url_for('home') }}">
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="admin@test.com"
+                        class="form-control"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="••••••"
+                        class="form-control"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+
+                <!-- Login error -->
+                {% if error %}
+                    <p class="text-danger text-center">{{ error }}</p>
+                {% endif %}
+
+                <button
+                    type="submit"
+                    class="custombtn w-100"
+                >
+                    Sign In
+                </button>
+            </form>
+        </section>
+
+        <!-- Copyright section -->
+        <section class="copyright">
+            <p class="mb-0">William Carvalho Dev &copy; 2026</p>
+        </section>
+    </main>
+</body>
+
+</html>

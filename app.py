@@ -7,8 +7,21 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
+
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        if email == "william@test.com" and password == "admin123":
+            return redirect(url_for("dashboard"))
+
+        return render_template(
+            "home.html",
+            error="Invalid credentials. Please check and try again."
+        )
+
     return render_template("home.html")
 
 
