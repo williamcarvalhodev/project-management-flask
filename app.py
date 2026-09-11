@@ -16,6 +16,7 @@ def home():
 def dashboard():
     projects_progress = []
     pending_approval = 0
+    completed_tasks = 0
 
     # Get projects currently in progress and pending approval
     for group in project_groups:
@@ -23,6 +24,7 @@ def dashboard():
 
             if project.status == "In Progress":
                 projects_progress.append(project)
+                completed_tasks += project.completed_tasks
 
             if project.status == "Proposal Sent":
                 pending_approval += 1
@@ -59,6 +61,7 @@ def dashboard():
     summary["monthly_earnings"].value = f"€{monthly_earnings:,.0f}"
     summary["annual_earnings"].value = f"€{annual_earnings:,.0f}"
     summary["pending_approval"].value = pending_approval
+    summary["task_completion"].value = completed_tasks
 
     return render_template(
         "dashboard.html",
