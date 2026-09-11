@@ -1,4 +1,4 @@
-from .models import RecentActivity, ProjectProgress, SummaryCard
+from .models import RecentActivity, SummaryCard
 
 recent_activities = [
     RecentActivity(
@@ -42,42 +42,6 @@ recent_activities = [
     )
 ]
 
-projects_progress = [
-    ProjectProgress(
-        project_id=1,
-        name="Corporate Website",
-        progress=60,
-        color="danger"
-    ),
-
-    ProjectProgress(
-        project_id=2,
-        name="Admin Dashboard",
-        progress=40,
-        color="warning"
-    ),
-
-    ProjectProgress(
-        project_id=3,
-        name="Customer Portal",
-        progress=60,
-        color="primary"
-    ),
-
-    ProjectProgress(
-        project_id=4,
-        name="E-commerce Platform",
-        progress=75,
-        color="info"
-    ),
-
-    ProjectProgress(
-        project_id=5,
-        name="Mobile Application",
-        progress=90,
-        color="success"
-    )
-]
 
 summary = {
     "monthly_earnings": SummaryCard(

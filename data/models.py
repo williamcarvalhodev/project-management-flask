@@ -7,14 +7,6 @@ class RecentActivity:
         self.description = description
 
 
-class ProjectProgress:
-    def __init__(self, project_id, name, progress, color):
-        self.project_id = project_id
-        self.name = name
-        self.progress = progress
-        self.color = color
-
-
 class SummaryCard:
     def __init__(self, id, category, value, url):
         self.id = id
