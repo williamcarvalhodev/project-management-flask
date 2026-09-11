@@ -349,7 +349,7 @@ aside nav a.active {
 .project-value {
     overflow: hidden;
     color: #666666;
-    font-size: 13px;
+    font-size: 12px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -510,6 +510,11 @@ aside nav a.active {
     }
 }
 
+/* In Progress Page */
+.complete-project-button {
+    font-size: 10.5px;
+}
+
 /* Large Mobile navigation */
 @media (max-width: 767px) {
 
@@ -584,5 +589,9 @@ aside nav a.active {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
+    }
+
+    .complete-project-button {
+        font-size: 12px;
     }
 }

@@ -22,11 +22,11 @@
                 <!-- Table header -->
                 <div class="project-grid-header d-none d-xl-block">
                     <div class="row g-3 align-items-center">
-                        <div class="col-xl-2">Project</div>
+                        <div class="col-xl-3">Project</div>
                         <div class="col-xl-2">Category</div>
                         <div class="col-xl-1">Tasks</div>
-                        <div class="col-xl-3 text-center">Progress</div>
-                        <div class="col-xl-2 text-center"> Deadline</div>
+                        <div class="col-xl-2 text-start text-xl-center">Progress</div>
+                        <div class="col-xl-2 text-start text-xl-center">Deadline</div>
                         <div class="col-xl-2"></div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                 <article class="project-grid-row">
                     <div class="row g-3 align-items-center">
                         <!-- Project name -->
-                        <div class="col-12 col-xl-2">
+                        <div class="col-12 col-xl-3">
                             <div class="project-cell" data-label="Project">
                                 <div class="project-title">
                                     <strong>{{ item.project.name }}</strong>
@@ -63,7 +63,7 @@
                         </div>
 
                         <!-- Progress -->
-                        <div class="col-12 col-xl-3">
+                        <div class="col-12 col-xl-2">
                             <div class="project-cell" data-label="Progress">
                                 <div class="w-100">
                                     <div class="progress border-0 rounded-0">
@@ -78,15 +78,15 @@
 
                         <!-- Deadline -->
                         <div class="col-12 col-xl-2">
-                            <div class="project-cell text-center" data-label="Deadline">
+                            <div class="project-cell text-start text-xl-center" data-label="Deadline">
                                 <span class="project-value">{{ item.project.end }}</span>
                             </div>
                         </div>
 
                         <!-- Complete project button -->
-                        <div class="col-12 col-xl-2 d-flex justify-content-start justify-content-md-end">
-                            <div class="project-cell d-flex justify-content-center">
-                                <button type="button" class="btn btn-sm btn-success border-0 rounded-0"
+                        <div class="col-12 col-xl-2">
+                            <div class="project-cell d-flex align-items-start align-items-xl-end">
+                                <button type="button" class="complete-project-button btn btn-sm btn-success border-0 rounded-0"
                                     title="Mark project as completed" data-bs-toggle="modal"
                                     data-bs-target="#completeProjectModal{{ item.project.project_id }}" {% if
                                     item.project.calculate_progress() < 100 %} disabled {% endif %}>
