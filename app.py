@@ -28,13 +28,13 @@ def dashboard():
 
             if project.status == "Proposal Sent":
                 pending_approval += 1
-    
+
     # Order projects from highest to lowest progress
     projects_progress.sort(
         key=Project.calculate_progress,
         reverse=True
     )
-    
+
     monthly_earnings = 0
     annual_earnings = 0
     current_date = datetime.now()
@@ -47,16 +47,16 @@ def dashboard():
 
                 completed_date = project.get_completed_date()
 
-            # Monthly earnings
-            if (
-                completed_date.month == current_date.month
-                and completed_date.year == current_date.year
-            ):
-                monthly_earnings += project.calculate_net()
+                # Monthly earnings
+                if (
+                    completed_date.month == current_date.month
+                    and completed_date.year == current_date.year
+                ):
+                    monthly_earnings += project.calculate_net()
 
-            # Annual earnings
-            if completed_date.year == current_date.year:
-                annual_earnings += project.calculate_net()
+                # Annual earnings
+                if completed_date.year == current_date.year:
+                    annual_earnings += project.calculate_net()
 
     # Update dashboard summary
     summary["monthly_earnings"].value = f"€{monthly_earnings:,.0f}"
