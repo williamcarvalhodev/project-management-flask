@@ -474,14 +474,11 @@ aside nav a.active {
     white-space: nowrap;
 }
 
-/* In Progress Page */
-.complete-project-button {
-    font-size: 10.5px;
-}
 
-
-/* Completed projects Page */
-.project-link-button {
+.complete-project-button,
+.project-link-butto,
+.edit-button,
+.delete-button {
     font-size: 10.5px;
 }
 
@@ -616,11 +613,11 @@ aside nav a.active {
         gap: 5px;
     }
 
-    .complete-project-button {
+    .complete-project-button,
+    .project-link-butto,
+    .edit-button,
+    .delete-button {
         font-size: 12px;
     }
 
-    .project-link-button {
-        font-size: 12px;
-    }
 }
