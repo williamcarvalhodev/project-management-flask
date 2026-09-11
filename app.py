@@ -156,15 +156,11 @@ def start_project(project_id):
 
             if project.project_id == project_id:
 
-                project.start = start_date
-                project.end = end_date
-                project.status = "In Progress"
-                project.status_class = "status-in-progress"
-                project.accepted = True
-
-                # Set tasks based on project category
-                project.total_tasks = group.get_total_tasks()
-                project.completed_tasks = 0
+                project.start_project(
+                    start_date,
+                    end_date,
+                    group.get_total_tasks()
+                )
 
                 return redirect(url_for("project_tracker"))
 

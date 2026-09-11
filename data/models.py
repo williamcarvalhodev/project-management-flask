@@ -97,11 +97,21 @@ class Project:
             self.days_left = "Today"
         else:
             self.days_left = "Overdue"
+            
+    # Start the project
+    def start_project(self, start_date, end_date, total_tasks):
+        self.start = start_date
+        self.end = end_date
+        self.status = "In Progress"
+        self.status_class = "status-in-progress"
+        self.accepted = True
+        self.total_tasks = total_tasks
+        self.completed_tasks = 0        
 
 
 class ProjectGroup:
     def __init__(self, group_id, name, projects):
-        self.group_id = group_id
+        self.group_id = group_id    
         self.name = name
         self.projects = projects
 
