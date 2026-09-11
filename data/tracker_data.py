@@ -51,7 +51,7 @@ ecommerce_projects = [
         days_left_class="project-in-progress",
         accepted=True,
         total_tasks=23,
-        completed_tasks=18
+        completed_tasks=23
     )
 ]
 

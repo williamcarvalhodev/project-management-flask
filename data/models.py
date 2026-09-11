@@ -106,7 +106,17 @@ class Project:
         self.status_class = "status-in-progress"
         self.accepted = True
         self.total_tasks = total_tasks
-        self.completed_tasks = 0        
+        self.completed_tasks = 0
+        
+    # Complete the project
+    def complete_project(self, invoice_required, project_link, completed_date):
+        self.invoice_required = invoice_required
+        self.project_link = project_link
+        self.status = "Completed"
+        self.status_class = "status-completed"
+        self.days_left = "Completed"
+        self.days_left_class = "project-completed"
+        self.completed_date = completed_date            
 
 
 class ProjectGroup:
