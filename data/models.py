@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class RecentActivity:
     def __init__(self, id, time, text, highlight, description):
         self.id = id
@@ -67,6 +69,15 @@ class Project:
 
         return int(
             (self.completed_tasks / self.total_tasks) * 100
+        )
+        
+     #Get project completion date
+    def get_completed_date(self):
+        date_value = self.completed_date or self.end
+
+        return datetime.strptime(
+            date_value,
+            "%d/%m/%Y"
         )
 
 

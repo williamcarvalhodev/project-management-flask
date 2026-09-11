@@ -45,23 +45,18 @@ def dashboard():
 
             if project.status == "Completed":
 
-                date_value = project.completed_date or project.end
+                completed_date = project.get_completed_date()
 
-                completed_date = datetime.strptime(
-                    date_value,
-                    "%d/%m/%Y"
-                )
+            # Monthly earnings
+            if (
+                completed_date.month == current_date.month
+                and completed_date.year == current_date.year
+            ):
+                monthly_earnings += project.calculate_net()
 
-                # Monthly earnings
-                if (
-                    completed_date.month == current_date.month
-                    and completed_date.year == current_date.year
-                ):
-                    monthly_earnings += project.calculate_net()
-
-                # Annual earnings
-                if completed_date.year == current_date.year:
-                    annual_earnings += project.calculate_net()
+            # Annual earnings
+            if completed_date.year == current_date.year:
+                annual_earnings += project.calculate_net()
 
     # Update dashboard summary
     summary["monthly_earnings"].value = f"€{monthly_earnings:,.0f}"
@@ -287,13 +282,7 @@ def completed_projects():
 
             if project.status == "Completed":
 
-                # Use completed date if available, otherwise use the original end date
-                date_value = project.completed_date or project.end
-
-                completed_date = datetime.strptime(
-                    date_value,
-                    "%d/%m/%Y"
-                )
+                completed_date = project.get_completed_date()
 
                 month_name = completed_date.strftime("%B %Y")
 
