@@ -71,7 +71,7 @@ class Project:
             (self.completed_tasks / self.total_tasks) * 100
         )
         
-     #Get project completion date
+    # Get project completion date
     def get_completed_date(self):
         date_value = self.completed_date or self.end
 
@@ -79,6 +79,24 @@ class Project:
             date_value,
             "%d/%m/%Y"
         )
+        
+    # Update days left based on project end date
+    def update_days_left(self):
+        current_date = datetime.now().date()
+
+        end_date = datetime.strptime(
+            self.end,
+            "%d/%m/%Y"
+        ).date()
+
+        days_left = (end_date - current_date).days
+
+        if days_left > 0:
+            self.days_left = f"{days_left} days"
+        elif days_left == 0:
+            self.days_left = "Today"
+        else:
+            self.days_left = "Overdue"
 
 
 class ProjectGroup:

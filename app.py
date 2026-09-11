@@ -74,28 +74,13 @@ def dashboard():
 
 @app.route("/project_tracker")
 def project_tracker():
-    current_date = datetime.now().date()
 
-    # Calculate days left for active projects
+    # Update days left for active projects
     for group in project_groups:
         for project in group.projects:
 
             if project.status == "In Progress":
-                end_date = datetime.strptime(
-                    project.end,
-                    "%d/%m/%Y"
-                ).date()
-
-                days_left = (end_date - current_date).days
-
-                if days_left > 0:
-                    project.days_left = f"{days_left} days"
-
-                elif days_left == 0:
-                    project.days_left = "Today"
-
-                else:
-                    project.days_left = "Overdue"
+                project.update_days_left()
 
     return render_template(
         "project_tracker.html",
