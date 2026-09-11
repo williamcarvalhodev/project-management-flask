@@ -515,6 +515,12 @@ aside nav a.active {
     font-size: 10.5px;
 }
 
+
+/* Completed projects Page */
+.project-link-button {
+   font-size: 10.5px; 
+}
+
 /* Large Mobile navigation */
 @media (max-width: 767px) {
 
@@ -593,5 +599,9 @@ aside nav a.active {
 
     .complete-project-button {
         font-size: 12px;
+    }
+
+    .project-link-button {
+        font-size: 12px; 
     }
 }

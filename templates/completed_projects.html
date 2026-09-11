@@ -43,9 +43,9 @@
                             <div class="col-xl-3">Project</div>
                             <div class="col-xl-3">Category</div>
                             <div class="col-xl-2">Completed</div>
-                            <div class="col-xl-1">Price</div>
-                            <div class="col-xl-1 text-center">Invoice</div>
-                            <div class="col-xl-2 text-center">Project Link</div>
+                            <div class="col-xl-1">Net</div>
+                            <div class="col-xl-1 text-start text-xl-center">Invoice</div>
+                            <div class="col-xl-2 text-start text-xl-center">Project Link</div>
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                             </div>
 
                             <!-- Invoice -->
-                            <div class="col-12 col-xl-1 d-flex justify-content-start justify-content-md-center">
+                            <div class="col-12 col-xl-1 d-flex justify-content-start justify-content-xl-center">
                                 <div class="project-cell" data-label="Invoice">
                                     {% if item.project.invoice_required %}
                                         <span class="invoice-yes">Yes</span>
@@ -95,12 +95,12 @@
                             </div>
 
                             <!-- Project link -->
-                            <div class="col-12 col-xl-2 d-flex justify-content-start justify-content-md-center">
+                            <div class="col-12 col-xl-2 d-flex justify-content-start justify-content-xl-center">
                                 <div class="project-cell" data-label="Project Link">
                                     {% if item.project.project_link %}
                                         <a href="{{ item.project.project_link }}" 
                                             target="_blank" rel="noopener noreferrer"
-                                            class="btn btn-sm btn-primary border-0 rounded-0">
+                                            class="project-link-button btn btn-sm btn-primary border-0 rounded-0">
                                             View Project
                                         </a>
                                     {% else %}
