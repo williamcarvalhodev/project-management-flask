@@ -36,7 +36,8 @@ class Project:
         completed_tasks=0,
         invoice_required=False,
         project_link="", 
-        completed_date=None       
+        completed_date=None,
+        tasks=None       
     ):
         self.project_id = project_id
         self.name = name
@@ -55,6 +56,7 @@ class Project:
         self.invoice_required = invoice_required
         self.project_link = project_link
         self.completed_date = completed_date
+        self.tasks = tasks if tasks is not None else []
 
     def calculate_net(self):
         if not self.accepted:
@@ -107,6 +109,7 @@ class Project:
         self.accepted = True
         self.total_tasks = total_tasks
         self.completed_tasks = 0
+        self.create_tasks()
         
     # Complete the project
     def complete_project(self, invoice_required, project_link, completed_date):
@@ -116,7 +119,19 @@ class Project:
         self.status_class = "status-completed"
         self.days_left = "Completed"
         self.days_left_class = "project-completed"
-        self.completed_date = completed_date            
+        self.completed_date = completed_date
+        
+    # Create project tasks
+    def create_tasks(self): 
+        self.tasks = []
+
+        for task_id in range(1, self.total_tasks + 1):
+            task = Task(
+                task_id=task_id,
+                name=f"Task {task_id}"
+            )
+
+            self.tasks.append(task)                
 
 
 class ProjectGroup:
@@ -168,4 +183,11 @@ class ProjectGroup:
                 if project.status == status:
                     ordered_projects.append(project)
 
-        return ordered_projects   
+        return ordered_projects 
+    
+    
+class Task:
+    def __init__(self, task_id, name, completed=False):
+        self.task_id = task_id
+        self.name = name
+        self.completed = completed      

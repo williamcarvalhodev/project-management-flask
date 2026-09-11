@@ -85,11 +85,6 @@ def dashboard():
     )
 
 
-@app.route("/project")
-def project():
-    
-    return render_template("project.html")
-
 @app.route("/project_tracker")
 def project_tracker():
 
@@ -104,6 +99,22 @@ def project_tracker():
         "project_tracker.html",
         project_groups=project_groups
     )
+
+
+@app.route("/projects/<int:project_id>")
+def project_details(project_id):
+
+    # Find project
+    for group in project_groups:
+        for project in group.projects:
+            if project.project_id == project_id:
+                return render_template(
+                    "project_details.html",
+                    project=project,
+                    project_type=group.name
+                )
+
+    return redirect(url_for("project_tracker"))
 
 
 @app.route("/projects/add", methods=["POST"])
