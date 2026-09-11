@@ -85,6 +85,11 @@ def dashboard():
     )
 
 
+@app.route("/project")
+def project():
+    
+    return render_template("project.html")
+
 @app.route("/project_tracker")
 def project_tracker():
 
