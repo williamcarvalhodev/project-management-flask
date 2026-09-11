@@ -15,13 +15,17 @@ def home():
 @app.route("/dashboard")
 def dashboard():
     projects_progress = []
+    pending_approval = 0
 
-    # Get projects currently in progress
+    # Get projects currently in progress and pending approval
     for group in project_groups:
         for project in group.projects:
 
             if project.status == "In Progress":
                 projects_progress.append(project)
+
+            if project.status == "Proposal Sent":
+                pending_approval += 1
 
     monthly_earnings = 0
     annual_earnings = 0
@@ -51,8 +55,10 @@ def dashboard():
                 if completed_date.year == current_date.year:
                     annual_earnings += project.calculate_net()
 
+    # Update dashboard summary
     summary["monthly_earnings"].value = f"€{monthly_earnings:,.0f}"
     summary["annual_earnings"].value = f"€{annual_earnings:,.0f}"
+    summary["pending_approval"].value = pending_approval
 
     return render_template(
         "dashboard.html",
