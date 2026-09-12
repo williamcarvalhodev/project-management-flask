@@ -47,7 +47,7 @@
                                 <label for="group_id" class="form-label">
                                     Category
                                 </label>
-                                <select id="group_id" name="group_id" class="form-select">
+                                <select id="group_id" name="group_id" class="form-select rounded-0">
 
                                     <!-- Creates one option for each project group -->
                                     {% for group in project_groups %}
@@ -63,7 +63,7 @@
                                 <label for="name" class="form-label">
                                     Project Name
                                 </label>
-                                <input type="text" id="name" name="name" class="form-control">
+                                <input type="text" id="name" name="name" class="form-control rounded-0">
                             </div>
 
                             <!-- Client name -->
@@ -71,7 +71,7 @@
                                 <label for="client" class="form-label">
                                     Client
                                 </label>
-                                <input type="text" id="client" name="client" class="form-control">
+                                <input type="text" id="client" name="client" class="form-control rounded-0">
                             </div>
 
                             <!-- Project price -->
@@ -80,7 +80,7 @@
                                     Price
                                 </label>
 
-                                <input type="number" id="price" name="price" step="0.01" class="form-control">
+                                <input type="number" id="price" name="price" step="0.01" class="form-control rounded-0">
                             </div>
 
                             <!-- Designer cost -->
@@ -89,7 +89,7 @@
                                     Designer Cost
                                 </label>
                                 <input type="number" id="designer_cost" name="designer_cost" step="0.01"
-                                    class="form-control">
+                                    class="form-control rounded-0">
                             </div>
                         </form>
                     </div>
@@ -269,13 +269,13 @@
                                     <!-- Start date -->
                                     <div class="mb-3">
                                         <label class="form-label">Start Date</label>
-                                        <input type="date" name="start" class="form-control" required>
+                                        <input type="date" name="start" class="form-control rounded-0" required>
                                     </div>
 
                                     <!-- End date -->
                                     <div class="mb-3">
                                         <label class="form-label">End Date</label>
-                                        <input type="date" name="end" class="form-control" required>
+                                        <input type="date" name="end" class="form-control rounded-0" required>
                                     </div>
                                 </div>
 
