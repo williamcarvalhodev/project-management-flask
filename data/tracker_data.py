@@ -154,3 +154,16 @@ project_groups = [
         projects=institutional_websites
     )
 ]
+
+# Create tasks for existing in progress projects
+for group in project_groups:
+    for project in group.projects:
+        if project.status == "In Progress" and not project.tasks:
+            task_names = group.get_task_names()
+
+            project.total_tasks = len(task_names)
+            project.create_tasks(task_names)
+
+            # Keep existing completed tasks
+            for task in project.tasks[:project.completed_tasks]:
+                task.completed = True
