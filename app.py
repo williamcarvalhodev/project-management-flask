@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for
 from data.dashboard_data import recent_activities
 from data.tracker_data import project_groups
@@ -6,6 +8,7 @@ from datetime import datetime
 
 
 app = Flask(__name__)
+app.secret_key = os.environ["SECRET_KEY"]
 
 @app.route("/", methods=["GET", "POST"])
 def home():
