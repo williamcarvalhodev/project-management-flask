@@ -9,14 +9,6 @@ class RecentActivity:
         self.description = description
 
 
-class SummaryCard:
-    def __init__(self, id, category, value, url):
-        self.id = id
-        self.category = category
-        self.value = value
-        self.url = url
-
-
 class Project:
     def __init__(
         self,

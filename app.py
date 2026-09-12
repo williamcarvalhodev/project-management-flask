@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from data.dashboard_data import recent_activities, summary
+from data.dashboard_data import recent_activities
 from data.tracker_data import project_groups
 from data.models import Project
 from datetime import datetime
@@ -57,7 +57,6 @@ def dashboard():
         for project in group.projects:
 
             if project.status == "Completed":
-
                 completed_date = project.get_completed_date()
 
                 # Monthly earnings
@@ -71,17 +70,14 @@ def dashboard():
                 if completed_date.year == current_date.year:
                     annual_earnings += project.calculate_net()
 
-    # Update dashboard summary
-    summary["monthly_earnings"].value = f"€{monthly_earnings:,.0f}"
-    summary["annual_earnings"].value = f"€{annual_earnings:,.0f}"
-    summary["pending_approval"].value = pending_approval
-    summary["task_completion"].value = completed_tasks
-
     return render_template(
         "dashboard.html",
         activities=recent_activities,
         projects=projects_progress,
-        summary=summary
+        monthly_earnings=f"€{monthly_earnings:,.0f}",
+        annual_earnings=f"€{annual_earnings:,.0f}",
+        pending_approval=pending_approval,
+        task_completion=completed_tasks
     )
 
 
