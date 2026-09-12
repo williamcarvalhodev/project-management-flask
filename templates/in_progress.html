@@ -39,7 +39,10 @@
                         <div class="col-12 col-xl-3">
                             <div class="project-cell" data-label="Project">
                                 <div class="project-title">
-                                    <strong>{{ item.project.name }}</strong>
+                                    <a href="{{ url_for('project_details', project_id=item.project.project_id) }}"
+                                        class="text-decoration-none text-reset">
+                                        <strong>{{ item.project.name }}</strong>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +89,8 @@
                         <!-- Complete project button -->
                         <div class="col-12 col-xl-2">
                             <div class="project-cell d-flex align-items-start align-items-xl-end">
-                                <button type="button" class="complete-project-button btn btn-sm btn-success border-0 rounded-0"
+                                <button type="button"
+                                    class="complete-project-button btn btn-sm btn-success border-0 rounded-0"
                                     title="Mark project as completed" data-bs-toggle="modal"
                                     data-bs-target="#completeProjectModal{{ item.project.project_id }}" {% if
                                     item.project.calculate_progress() < 100 %} disabled {% endif %}>

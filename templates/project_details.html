@@ -44,7 +44,7 @@
 
                 <!-- Tasks list -->
                 {% for task in project.tasks %}
-                <article class="project-grid-row">
+                <article class="project-grid-row" id="task-{{ task.task_id }}">
                     <div class="row g-3 align-items-center">
                         <!-- Task -->
                         <div class="col-12 col-xl-7">

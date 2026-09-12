@@ -135,7 +135,7 @@ def toggle_task(project_id, task_id):
                             url_for(
                                 "project_details",
                                 project_id=project_id
-                            )
+                            ) + f"#task-{task_id}"
                         )
 
     return redirect(url_for("project_tracker"))
