@@ -6,19 +6,87 @@
 
 <div class="main-content-tracker">
     <div class="container-tracker">
-        <h2 class="text-start">{{ project.name }}</h2>
-        <p class="text-start">
-            Category: {{ project_type }}
-        </p>
-    </div>
+        <!-- Tasks summary -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="text-start">{{ project.name }}</h2>
+                <p class="text-start">
+                    Category: {{ project_type }}
+                </p>
+                <p class="text-muted mb-0">
+                    {{ project.completed_tasks }} of {{ project.total_tasks }} completed
+                </p>
+            </div>
+        </div>
 
+        <!-- Project progress -->
+        <div class="progress mb-4 border-0 rounded-0" role="progressbar" aria-valuenow="{{ project.calculate_progress() }}"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: {{ project.calculate_progress() }}%">
+                {{ project.calculate_progress() }}%
+            </div>
+        </div>
+    </div>
 
     <div class="projects-content">
         <div class="col-12 mt-4">
             <h2>Tasks</h2>
 
-           
+            <div class="project-grid-card">
+                <!-- Table header -->
+                <div class="project-grid-header d-none d-xl-block">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-xl-7">Task</div>
+                        <div class="col-xl-2">Owner</div>
+                        <div class="col-xl-3 text-start text-xl-center">Status</div>
+                    </div>
+                </div>
 
+                <!-- Tasks list -->
+                {% for task in project.tasks %}
+                <article class="project-grid-row">
+                    <div class="row g-3 align-items-center">
+                        <!-- Task -->
+                        <div class="col-12 col-xl-7">
+                            <div class="project-cell" data-label="Task">
+                                <span class="project-value">{{ task.name }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Owner -->
+                        <div class="col-12 col-xl-2">
+                            <div class="project-cell" data-label="Owner">
+                                <span class="project-value">{{ task.get_owner() }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Task status -->
+                        <div class="col-12 col-xl-3">
+                            <div class="project-cell align-items-xl-center gap-2"
+                                data-label="Status">
+                                <form method="POST" action="{{ url_for('toggle_task', project_id=project.project_id, task_id=task.task_id) }}">
+                                    <button type="submit" class="btn p-0 border-0 bg-transparent"
+                                        title="Update task status">
+                                        {% if task.completed %}
+                                            <i class="bi bi-check-square-fill text-primary"></i>
+                                        {% else %}
+                                            <i class="bi bi-square"></i>
+                                        {% endif %}
+                                    </button>
+                                    {% if task.completed %}
+                                        <span class="invoice-yes">Completed</span>
+                                    {% else %}
+                                        <span class="invoice-no">Pending</span>
+                                    {% endif %}
+                                </form>                                
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 </div>

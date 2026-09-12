@@ -117,6 +117,30 @@ def project_details(project_id):
     return redirect(url_for("project_tracker"))
 
 
+@app.route("/projects/<int:project_id>/tasks/<int:task_id>/toggle",methods=["POST"])
+def toggle_task(project_id, task_id):
+
+    # Find project
+    for group in project_groups:
+        for project in group.projects:
+            if project.project_id == project_id:
+
+                # Find task
+                for task in project.tasks:
+                    if task.task_id == task_id:
+                        task.toggle_completed()
+                        project.update_completed_tasks()
+
+                        return redirect(
+                            url_for(
+                                "project_details",
+                                project_id=project_id
+                            )
+                        )
+
+    return redirect(url_for("project_tracker"))
+
+
 @app.route("/projects/add", methods=["POST"])
 def add_project():
     group_id = int(request.form["group_id"])
@@ -188,7 +212,7 @@ def start_project(project_id):
                 project.start_project(
                     start_date,
                     end_date,
-                    group.get_total_tasks()
+                    group.get_task_names()
                 )
 
                 return redirect(url_for("project_tracker"))

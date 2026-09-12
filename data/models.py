@@ -101,15 +101,15 @@ class Project:
             self.days_left = "Overdue"
             
     # Start the project
-    def start_project(self, start_date, end_date, total_tasks):
+    def start_project(self, start_date, end_date, task_names):
         self.start = start_date
         self.end = end_date
         self.status = "In Progress"
         self.status_class = "status-in-progress"
         self.accepted = True
-        self.total_tasks = total_tasks
+        self.total_tasks = len(task_names)
         self.completed_tasks = 0
-        self.create_tasks()
+        self.create_tasks(task_names)
         
     # Complete the project
     def complete_project(self, invoice_required, project_link, completed_date):
@@ -122,16 +122,26 @@ class Project:
         self.completed_date = completed_date
         
     # Create project tasks
-    def create_tasks(self): 
+    def create_tasks(self, task_names):
         self.tasks = []
 
-        for task_id in range(1, self.total_tasks + 1):
+        for task_id, task_name in enumerate(task_names, start=1):
             task = Task(
                 task_id=task_id,
-                name=f"Task {task_id}"
+                name=task_name
             )
 
-            self.tasks.append(task)                
+            self.tasks.append(task) 
+            
+    # Update completed tasks
+    def update_completed_tasks(self):
+        completed_tasks = 0
+
+        for task in self.tasks:
+            if task.completed:
+                completed_tasks += 1
+
+        self.completed_tasks = completed_tasks                      
 
 
 class ProjectGroup:
@@ -168,6 +178,79 @@ class ProjectGroup:
 
         return 0    
 
+    # Get tasks based on project category
+    def get_task_names(self):
+        if self.name == "E-commerce Websites":
+            return [
+                "Planning & Layout Definition",
+                "Design System",
+                "Design Header/Footer",
+                "Create Header/Footer",
+                "Build Filter System",
+                "Create Test Products",
+                "Design Product Layout",
+                "Develop Product Layout",
+                "Design Home Page",
+                "Develop Home Page",
+                "Design About Page",
+                "Develop About Page",
+                "Design Shop Page",
+                "Develop Shop Page",
+                "Design Contact Page",
+                "Develop Contact Page",
+                "Create Checkout Page",
+                "Customize WooCommerce Email Templates",
+                "Test Full Purchase Flow",
+                "Test Emails",
+                "Configure Hosting Environment",
+                "Integrate Payment Gateways",
+                "Website Publishing"
+            ]
+
+        elif self.name == "Landing Pages":
+            return [
+                "Planning & Layout Definition",
+                "Design System",
+                "Design Header/Footer",
+                "Create Header/Footer",
+                "Design Hero Section",
+                "Develop Hero Section",
+                "Design Benefits Section",
+                "Develop Benefits Section",
+                "Design Services Section",
+                "Develop Services Section",
+                "Design Testimonials Section",
+                "Develop Testimonials Section",
+                "Design Contact Form",
+                "Develop Contact Form",
+                "Responsive Adjustments",
+                "SEO Setup",
+                "Performance Testing",
+                "Website Publishing"
+            ]
+
+        elif self.name == "Institutional Websites":
+            return [
+                "Planning & Layout Definition",
+                "Design System",
+                "Design Header/Footer",
+                "Create Header/Footer",
+                "Design Home Page",
+                "Develop Home Page",
+                "Design About Page",
+                "Develop About Page",
+                "Design Services Page",
+                "Develop Services Page",
+                "Design Contact Page",
+                "Develop Contact Page",
+                "Responsive Adjustments",
+                "SEO Setup",
+                "Performance Testing",
+                "Website Publishing"
+            ]
+
+        return []
+
     # Order projects by status
     def ordered_projects(self):
         ordered_projects = []
@@ -190,4 +273,15 @@ class Task:
     def __init__(self, task_id, name, completed=False):
         self.task_id = task_id
         self.name = name
-        self.completed = completed      
+        self.completed = completed
+        
+    # Get task owner based on task type
+    def get_owner(self):
+        if "Design" in self.name:
+            return "Designer"
+
+        return "Developer"
+    
+    # Toggle task completion
+    def toggle_completed(self):
+        self.completed = not self.completed        
